@@ -1,0 +1,4 @@
+﻿  1.c
+c:\users\jsu48\source\vs_workspace\문해기8주차\문해기8주차\1.c(6): warning C4013: 'srand'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+c:\users\jsu48\source\vs_workspace\문해기8주차\문해기8주차\1.c(23): warning C4013: 'rand'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+  문해기8주차.vcxproj -> C:\Users\jsu48\source\VS_workspace\문해기8주차\Debug\문해기8주차.exe

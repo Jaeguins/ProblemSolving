@@ -1,0 +1,8 @@
+﻿  8.c
+c:\users\jsu48\source\vs_workspace\문해기3주차\문해기3주차\8.c(18): warning C4305: '함수': 'double'에서 'float'(으)로 잘립니다.
+c:\users\jsu48\source\vs_workspace\문해기3주차\문해기3주차\8.c(19): warning C4305: '함수': 'double'에서 'float'(으)로 잘립니다.
+c:\users\jsu48\source\vs_workspace\문해기3주차\문해기3주차\8.c(20): warning C4305: '함수': 'double'에서 'float'(으)로 잘립니다.
+c:\users\jsu48\source\vs_workspace\문해기3주차\문해기3주차\8.c(21): warning C4305: '함수': 'double'에서 'float'(으)로 잘립니다.
+c:\users\jsu48\source\vs_workspace\문해기3주차\문해기3주차\8.c(22): warning C4305: '함수': 'double'에서 'float'(으)로 잘립니다.
+c:\users\jsu48\source\vs_workspace\문해기3주차\문해기3주차\8.c(23): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  문해기3주차.vcxproj -> C:\Users\jsu48\source\VS_workspace\문해기3주차\Debug\문해기3주차.exe
