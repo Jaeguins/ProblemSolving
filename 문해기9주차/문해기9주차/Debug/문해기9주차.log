@@ -1,2 +1,3 @@
 ﻿  5.c
-  문해기9주차.vcxproj -> C:\Users\jsu48\source\VS_workspace\문해기9주차\Debug\문해기9주차.exe
+c:\users\jsu48\source\vs_workspace\problemsolving\문해기9주차\문해기9주차\5.c(45): warning C4477: 'printf' : 서식 문자열 '%f'에 'double' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'int'입니다.
+  문해기9주차.vcxproj -> C:\Users\jsu48\source\VS_workspace\ProblemSolving\문해기9주차\Debug\문해기9주차.exe
