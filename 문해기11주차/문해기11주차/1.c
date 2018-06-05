@@ -35,7 +35,7 @@ void  analyze_hand(void) {
             printf("high card\n");
         }
         else {
-            printf("%d pair(s)\n");
+            printf("%d pair(s)\n",count_pairs());
         }
     }
     
@@ -54,7 +54,7 @@ void  read_cards(void) {
     int  cards_read = 0;
     while (cards_read < NUM_CARDS) {
         printf("Enter  a  card:  ");
-        scanf("  %c", &rank_ch);
+        scanf_s("  %c", &rank_ch);
         switch (rank_ch) {
         case  'a':  rank = 1; break;
         case  '2':  rank = 2; break;
@@ -70,7 +70,7 @@ void  read_cards(void) {
         case  'q':  rank = 12; break;
         case  'k':rank = 13; break;
         }
-        scanf("  %c", &suit_ch);
+        scanf_s("  %c", &suit_ch);
         switch (suit_ch) {
         case  'c':suit = 0; break;
         case  'd':suit = 1; break;
@@ -131,7 +131,13 @@ int  count_pairs() {  //  one  pair이면  1,  two  pair이면  2,  아니면  0을  ret
     return pairs;
 }
 int  main(void) {
+    for (int i = 0; i < NUM_RANKS+1; i++) {
+        num_in_rank[i] = 0;
+    }
+    for (int i = 0; i < NUM_SUITS; i++) {
+        num_in_suit[i] = 0;
+    }
     while (1) {
-        read_cards();  analyze_hand(); getchar(); getchar();
+        read_cards();  analyze_hand(); getchar();
     }
 }
