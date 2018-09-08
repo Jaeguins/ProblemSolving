@@ -3258,6 +3258,7 @@ sorted
 sorting
 sorts
 sought
+soul
 sound
 sounded
 sounding
