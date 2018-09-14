@@ -2,7 +2,7 @@
 #include <string.h>
 #define MAX_WORD_LENGTH 50
 #define MAX_WORD_PER_LINE 80
-#define CHARACTER_PER_LINE 40
+#define CHARACTER_PER_LINE 80
 char line[80][50];
 int main() {
     FILE *read, *write;
@@ -12,8 +12,15 @@ int main() {
     int wInd = 0, lLength = 0;
     while (fscanf_s(read, "%s ", &buffer, MAX_WORD_LENGTH) != EOF) {
         if (lLength+strlen(buffer) > CHARACTER_PER_LINE-wInd) {
+            int spaces = CHARACTER_PER_LINE - lLength;
             for (int i = 0; i < wInd-1; i++) {
-                fprintf(write,"%s ", line[i]);
+                fprintf(write,"%s", line[i]);
+                for (int j = 0; j < spaces / (wInd-1); j++)
+                    fprintf(write, " ");
+                if (spaces%(wInd-1) > 0) {
+                    fprintf(write, " ");
+                    spaces -= 1;
+                }
             }
             fprintf(write,line[wInd - 1]);
             fprintf(write,"\n");
