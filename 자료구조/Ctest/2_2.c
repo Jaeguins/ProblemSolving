@@ -12,12 +12,13 @@ void interAct();
 void add();
 void find();
 void status();
-void delete();
+void removes();
 void load(char* fileName);
 void export();
 void import();
 void save(char* fileName);
-void sort();
+int search(char* name);
+void searchAll(int loc[MAX_NUMOF_PEOPLE], char* name);
 int main() {
     load(autoSave);
     while (1) interAct();
@@ -28,7 +29,7 @@ void interAct() {
     if (!strcmp(buffer, "add")) add();
     else if (!strcmp(buffer, "find")) find();
     else if (!strcmp(buffer, "status")) status();
-    else if (!strcmp(buffer, "delete")) delete();
+    else if (!strcmp(buffer, "delete")) removes();
     else if (!strcmp(buffer, "save")) export();
     else if (!strcmp(buffer, "read")) import();
     save(autoSave);
@@ -38,19 +39,19 @@ void interAct() {
 }
 void import() {
     char* tFileName;
-    scanf_s("%s", tFileName, MAX_LENGTH_OF_COMMAND);
+    scanf_s("%s", &tFileName, MAX_LENGTH_OF_COMMAND);
     load(tFileName);
 }
 void export() {
     char*tFileName;
-    scanf_s("%s", tFileName, MAX_LENGTH_OF_COMMAND);
-    scanf_s("%s", tFileName, MAX_LENGTH_OF_COMMAND);
+    scanf_s("%s", &tFileName, MAX_LENGTH_OF_COMMAND);
+    scanf_s("%s", &tFileName, MAX_LENGTH_OF_COMMAND);
     save(tFileName);
 }
 void save(char* fileName) {
     FILE *fp;
-    fopen_s(fp, fileName, "w");
-    if (fp == NULL) {
+    errno_t err=fopen_s(&fp, fileName, "w");
+    if (err != 0) {
         printf("Open failed.\n");
         return;
     }
@@ -60,28 +61,27 @@ void save(char* fileName) {
     fclose(fp);
 }
 void load(char* fileName) {
-    char* buf1;
-    char* buf2;
     FILE *fp;
-    fopen_s(fp, *fileName, "r");
-    if (fp == NULL) {
+    errno_t err=fopen_s(&fp, fileName, "r");
+    if (err != 0) {
         printf("Open failed.\n");
         return;
     }
-    while ((fscanf_s(fp, "%s", buf1, MAX_LENGTH_OF_COMMAND) != EOF)) {
+    while ((fscanf_s(fp, "%s ", buffer, MAX_LENGTH_OF_COMMAND) != EOF)) {
         int modified = 0;
         for (int i = 0; i < rear; i++) {
-            if (!strcmp(buf1, names[i])) {
-                fscanf_s(fp, "%s", buf2, MAX_LENGTH_OF_COMMAND);
-                numbers[i] = strdup(buf2);
+            if (!strcmp(buffer, names[i])) {
+                names[i] = _strdup(buffer);
+                fscanf_s(fp, "%s", &buffer, MAX_LENGTH_OF_COMMAND);
+                numbers[i] = _strdup(buffer);
                 modified = 1;
                 break;
             }
         }
-        if (modified) {
-            fscanf(fp, "%s", buf2);
-            names[rear] = strdup(buf1);
-            numbers[rear] = strdup(buf2);
+        if (!modified) {
+            names[rear] = _strdup(buffer);
+            fscanf_s(fp, "%s", &buffer, MAX_LENGTH_OF_COMMAND);
+            numbers[rear] = _strdup(buffer);
             rear++;
         }
     }
@@ -89,7 +89,7 @@ void load(char* fileName) {
 }
 void add() {
     if (rear == MAX_NUMOF_PEOPLE) {
-        printf("error : phonebook is full.");
+        printf("error : phonebook is full.\n");
         return;
     }
     scanf_s("%s", buffer, MAX_LENGTH_OF_COMMAND);
@@ -99,11 +99,11 @@ void add() {
         numbers[i + 1] = numbers[i];
         i--;
     }
-    names[i + 1] = strdup(buffer);
+    names[i + 1] = _strdup(buffer);
     scanf_s("%s", buffer, MAX_LENGTH_OF_COMMAND);
-    numbers[i + 1] = strdup(buffer);
+    numbers[i + 1] = _strdup(buffer);
     rear += 1;
-    printf("%s was added successfully", names[rear - 1]);
+    printf("%s was added successfully\n", names[rear - 1]);
 }
 void find() {
     scanf_s("%s", buffer, MAX_LENGTH_OF_COMMAND);
@@ -111,12 +111,21 @@ void find() {
     if(index==-1) printf("No person names '%s' exists.\n", buffer);
     else printf("%s\n", numbers[index]);
 }
-void status() {
-    for (int i = 0; i < rear; i++)
-        printf("%s %s\n", names[i], numbers[i]);
-    printf("Totla %d person(people).\n", rear);
+void findAll() {
+    scanf_s("%s", buffer, MAX_LENGTH_OF_COMMAND);
+    int subInd[MAX_NUMOF_PEOPLE];
+    searchAll(subInd, buffer);
+    for (int i = 0; i < MAX_NUMOF_PEOPLE; i++) {
+        if (subInd[i] != -1) {
+            printf("%s\n", numbers[subInd[i]]);
+        }
+        else {
+            printf("%d people found\n", i + 1);
+            break;
+        }
+    }
 }
-void remove() {
+void removes() {
     scanf_s("%s", buffer, MAX_LENGTH_OF_COMMAND);
     int i;
     int index = search(buffer);
@@ -131,4 +140,23 @@ void remove() {
     }
     rear--;
     printf("'%s' was deleted successfully. \n", buffer);
+}
+int search(char *name) {
+    int i;
+    for(i =0; i < rear; i++) {
+        if(!strcmp(name, names[i])) return i;
+    }
+    return -1;
+}
+void searchAll(int locs[MAX_NUMOF_PEOPLE],char* name) {
+    int index = 0;
+    for (int i = 0; i < rear; i++) {
+        if (strstr(names[i],name)!=NULL) locs[index++] = i;
+    }
+    locs[index]=-1;
+}
+void status() {
+    for(int i =0; i < rear; i++)
+        printf("%s  %s\n", names[i], numbers[i]);
+    printf("Total %d persons.\n", rear);
 }
