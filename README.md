@@ -1,5 +1,7 @@
 # ProblemSolving
 problem solving class solutions<br>
-test helloworld!
-이것은 테스트용 입니다.
-Hello World!
+<hr/>
+all problem from lecture is produced from Professor Ohheum.<br>
+<https://github.com/ohheum><br>
+<hr/>
+* Just for note, so submit with nothing changed is not allowed.
