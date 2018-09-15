@@ -166,10 +166,15 @@ void searchAll(int locs[MAX_NUMOF_PEOPLE], char* name) {
 }
 void removesAll() {
     scanf_s("%s", buffer, MAX_LENGTH_OF_COMMAND);
-    int i,buf[MAX_NUMOF_PEOPLE];
+    int i,buf[MAX_NUMOF_PEOPLE],delCounter=0;
     searchAll(buf, buffer);
     for (int i = 0; buf[i]!=-1; i++) {
-        removeTarget(buf[i]);
+        printf("Are you sure to delete %s?", names[buf[i - delCounter]]);
+        scanf_s("%s", buffer, MAX_LENGTH_OF_COMMAND);
+        if (!strcmp(buffer, "yes")) {
+            removeTarget(buf[i - delCounter]);
+            delCounter += 1;
+        }
     }
 }
 void status() {
