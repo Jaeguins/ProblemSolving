@@ -1,1 +1,4 @@
-﻿  Ctest.vcxproj -> C:\Users\jsu48\source\VS_workspace\ProblemSolving\자료구조\x64\Debug\DatStructure.exe
+﻿  2_1.c
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\2_1.c(8): warning C4047: '함수': 'char *'의 간접 참조 수준이 'char (*)[120]'과(와) 다릅니다.
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\2_1.c(8): warning C4024: 'gets_s': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+  Ctest.vcxproj -> C:\Users\jsu48\source\VS_workspace\ProblemSolving\자료구조\x64\Debug\DatStructure.exe
