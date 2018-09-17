@@ -1,10 +1,11 @@
 ﻿  2_2.c
-c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\2_2.c(37): warning C4013: 'exit'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\2_2.c(42): warning C4477: 'scanf_s' : 서식 문자열 '%s'에 'char *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'char **'입니다.
-  c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\2_2.c(42): note: 이 인수는 변환 지정자에서 사용됩니다.
-c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\2_2.c(47): warning C4477: 'scanf_s' : 서식 문자열 '%s'에 'char *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'char **'입니다.
-  c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\2_2.c(47): note: 이 인수는 변환 지정자에서 사용됩니다.
-c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\2_2.c(48): warning C4477: 'scanf_s' : 서식 문자열 '%s'에 'char *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'char **'입니다.
-  c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\2_2.c(48): note: 이 인수는 변환 지정자에서 사용됩니다.
-c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\2_2.c(130): warning C4101: 'i' :참조되지 않은 지역 변수입니다.
-  Ctest.vcxproj -> C:\Users\jsu48\source\VS_workspace\ProblemSolving\자료구조\x64\Debug\DatStructure.exe
+d:\workspace\problemsolving\problemsolving\자료구조\ctest\2_2.c(42): warning C4013: 'exit'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+d:\workspace\problemsolving\problemsolving\자료구조\ctest\2_2.c(47): warning C4477: 'scanf_s' : 서식 문자열 '%s'에 'char *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'char **'입니다.
+  d:\workspace\problemsolving\problemsolving\자료구조\ctest\2_2.c(47): note: 이 인수는 변환 지정자에서 사용됩니다.
+d:\workspace\problemsolving\problemsolving\자료구조\ctest\2_2.c(52): warning C4477: 'scanf_s' : 서식 문자열 '%s'에 'char *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'char **'입니다.
+  d:\workspace\problemsolving\problemsolving\자료구조\ctest\2_2.c(52): note: 이 인수는 변환 지정자에서 사용됩니다.
+d:\workspace\problemsolving\problemsolving\자료구조\ctest\2_2.c(53): warning C4477: 'scanf_s' : 서식 문자열 '%s'에 'char *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'char **'입니다.
+  d:\workspace\problemsolving\problemsolving\자료구조\ctest\2_2.c(53): note: 이 인수는 변환 지정자에서 사용됩니다.
+d:\workspace\problemsolving\problemsolving\자료구조\ctest\2_2.c(148): warning C4101: 'i' :참조되지 않은 지역 변수입니다.
+d:\workspace\problemsolving\problemsolving\자료구조\ctest\2_2.c(169): warning C4101: 'i' :참조되지 않은 지역 변수입니다.
+  Ctest.vcxproj -> D:\Workspace\problemsolving\ProblemSolving\자료구조\x64\Debug\DatStructure.exe
