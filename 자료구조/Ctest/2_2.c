@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <string.h>
-#define MAX_NAME_LENGTH 20
-#define MAX_NUMOF_PEOPLE 20
-#define MAX_LENGTH_OF_COMMAND 100
+#define MAX_NAME_LENGTH 20 //이름 최대길이
+#define MAX_NUMOF_PEOPLE 20 //최대 사람수
+#define MAX_LENGTH_OF_COMMAND 100 // 최대 명령어(버퍼)길이
 char buffer[MAX_LENGTH_OF_COMMAND];
 char* names[MAX_NUMOF_PEOPLE];
 char* numbers[MAX_NUMOF_PEOPLE];
-char* autoSave = "phonebooks.txt";
+char* autoSave = "phonebooks.txt";//자동저장용 파일명
 int rear = 0;
 void interAct();
 void add();
@@ -19,11 +19,11 @@ void import();
 void save(char* fileName);
 int search(char* name);
 void searchAll(int loc[MAX_NUMOF_PEOPLE], char* name);
-int main() {
-    load(autoSave);
+int main() {//메인함수
+    load(autoSave);//자동저장 불러오기
     while (1) interAct();
 }
-void interAct() {
+void interAct() {//소통 함수
     printf("$ ");
     scanf_s("%s", buffer, MAX_LENGTH_OF_COMMAND);
     if (!strcmp(buffer, "add")) add();
@@ -32,23 +32,23 @@ void interAct() {
     else if (!strcmp(buffer, "delete")) removes();
     else if (!strcmp(buffer, "save")) export();
     else if (!strcmp(buffer, "read")) import();
-    save(autoSave);
+    save(autoSave);//명령어 하나마다 자동저장
     if (!strcmp(buffer, "exit")) {
         exit();
     }
 }
-void import() {
+void import() {//들여오기
     char* tFileName;
     scanf_s("%s", &tFileName, MAX_LENGTH_OF_COMMAND);
     load(tFileName);
 }
-void export() {
+void export() {//다른이름으로 저장
     char*tFileName;
     scanf_s("%s", &tFileName, MAX_LENGTH_OF_COMMAND);
     scanf_s("%s", &tFileName, MAX_LENGTH_OF_COMMAND);
     save(tFileName);
 }
-void save(char* fileName) {
+void save(char* fileName) {//특정 이름으로 저장
     FILE *fp;
     errno_t err=fopen_s(&fp, fileName, "w");
     if (err != 0) {
@@ -60,7 +60,7 @@ void save(char* fileName) {
     }
     fclose(fp);
 }
-void load(char* fileName) {
+void load(char* fileName) {//불러오기
     FILE *fp;
     errno_t err=fopen_s(&fp, fileName, "r");
     if (err != 0) {
@@ -87,7 +87,7 @@ void load(char* fileName) {
     }
     fclose(fp);
 }
-void add() {
+void add() {//추가
     if (rear == MAX_NUMOF_PEOPLE) {
         printf("error : phonebook is full.\n");
         return;
@@ -105,13 +105,13 @@ void add() {
     rear += 1;
     printf("%s was added successfully\n", names[rear - 1]);
 }
-void find() {
+void find() {//탐색
     scanf_s("%s", buffer, MAX_LENGTH_OF_COMMAND);
     int index = search(buffer);
     if(index==-1) printf("No person names '%s' exists.\n", buffer);
     else printf("%s\n", numbers[index]);
 }
-void findAll() {
+void findAll() {//전체탐색
     scanf_s("%s", buffer, MAX_LENGTH_OF_COMMAND);
     int subInd[MAX_NUMOF_PEOPLE];
     searchAll(subInd, buffer);
@@ -125,7 +125,7 @@ void findAll() {
         }
     }
 }
-void removes() {
+void removes() {//제거
     scanf_s("%s", buffer, MAX_LENGTH_OF_COMMAND);
     int i;
     int index = search(buffer);
@@ -141,21 +141,21 @@ void removes() {
     rear--;
     printf("'%s' was deleted successfully. \n", buffer);
 }
-int search(char *name) {
+int search(char *name) {//인덱스 검색
     int i;
     for(i =0; i < rear; i++) {
         if(!strcmp(name, names[i])) return i;
     }
     return -1;
 }
-void searchAll(int locs[MAX_NUMOF_PEOPLE],char* name) {
+void searchAll(int locs[MAX_NUMOF_PEOPLE],char* name) {//인덱스 다중 검색(locs로 반환)
     int index = 0;
     for (int i = 0; i < rear; i++) {
         if (strstr(names[i],name)!=NULL) locs[index++] = i;
     }
     locs[index]=-1;
 }
-void status() {
+void status() {//상태 출력
     for(int i =0; i < rear; i++)
         printf("%s  %s\n", names[i], numbers[i]);
     printf("Total %d persons.\n", rear);
