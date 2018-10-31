@@ -1,3 +1,21 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: 중간 디렉터리(Debug\)에 다른 프로젝트(Ctest.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
-  5_1.c
+  6_1.c
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\6_1.c(29): warning C4473: 'scanf_s': 서식 문자열에 대한 인수가 충분하게 전달되지 않았습니다.
+  c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\6_1.c(29): note: 자리 표시자 및 해당 매개 변수에는 variadic 인수가 2개 필요하지만 1개가 제공되었습니다.
+  c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\6_1.c(29): note: 누락된 variadic 인수 2이(가) 서식 문자열 '%c'에 필요합니다.
+  c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\6_1.c(29): note: 이 인수는 버퍼 크기로 사용됩니다.
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\6_1.c(90): warning C4013: 'eval_term'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\6_1.c(224): warning C4013: 'create_by_add_two_polynomials'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\6_1.c(224): warning C4047: '=': 'Polynomial *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\6_1.c(225): warning C4013: 'create_by_mult_two_polynomials'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\6_1.c(225): warning C4047: '=': 'Polynomial *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\6_1.c(235): warning C4013: 'create_by_parse_polynomial'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\6_1.c(235): warning C4047: '초기화 중': 'Polynomial *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\6_1.c(249): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\6_1.c(252): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\6_1.c(254): warning C4013: 'parse_and_add_term'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\6_1.c(258): warning C4047: 'return': 'int'의 간접 참조 수준이 'void *'과(와) 다릅니다.
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\6_1.c(262): warning C4047: 'return': 'int'의 간접 참조 수준이 'Polynomial *'과(와) 다릅니다.
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\6_1.c(310): warning C4047: 'return': 'int'의 간접 참조 수준이 'Polynomial *'과(와) 다릅니다.
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\6_1.c(347): warning C4047: 'return': 'int'의 간접 참조 수준이 'Polynomial *'과(와) 다릅니다.
   Ctest.vcxproj -> C:\Users\jsu48\source\VS_workspace\ProblemSolving\자료구조\Debug\DatStructure.exe
