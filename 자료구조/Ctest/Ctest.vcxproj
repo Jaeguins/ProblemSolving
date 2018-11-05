@@ -60,6 +60,7 @@
     <ClCompile Include="6_1.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="7_1.c" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="5_1.c">
