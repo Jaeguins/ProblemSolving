@@ -1,6 +1,6 @@
 #include "library.h"
 
-
+int lastIndex=0;
 Artist* artist_directory[27];
 Library* index_directory[INDEX_SIZE];
 
@@ -51,7 +51,7 @@ void addSong(Artist* artist, Song* song) {
     else pointer = pointer->next;
 
     Library* indexLib = initLibrary(song);
-    Library* pointer = index_directory[song->index%INDEX_SIZE];
+    pointer = index_directory[song->index%INDEX_SIZE];
     if (pointer == NULL) index_directory[song->index%INDEX_SIZE] = indexLib;
     else {
         while (pointer->next != NULL)pointer = pointer->next;
@@ -130,3 +130,39 @@ void removeSongByIndex(int index) {
         else pointer = pointer->next;
     }
 }
+
+void readList(char* Fpath) {
+    FILE* f;
+    f =fopen(Fpath, "r");
+    char buffer[MAX_BUFFER_LENGTH];
+    while (fscanf(f, "%s", &buffer) != EOF) {
+        int num=atoi(strtok(buffer, "|"));
+        char* path = strtok(NULL, "|");
+        char* tPath=NULL;
+        strcpy(tPath,path);
+        char* tArtist = strtok(path, "/"),*tName=strtok(NULL,"/"), *tBuffer=strtok(NULL,"/");
+        while (strlen(tBuffer)!=0) {
+            free(tArtist);
+            tArtist = tName;
+            tName = tBuffer;
+            tBuffer = strtok(NULL, "/");
+        }
+        if (findArtistByName(tArtist) == NULL) {
+            addArtist(initArtist(tArtist));
+        }
+        addSong(findArtistByName(tArtist), initSong(tName, path, lastIndex++));
+    }
+    fclose(f);
+}
+
+void writeList(char* Fpath) {
+    FILE* f;
+    f = fopen(Fpath, "w");
+    Song* tSong=NULL;
+    for (int i = 0; i < lastIndex; i++) {
+        tSong = findSongByIndex(i);
+        fprintf(f, "%d|%s\n", tSong->index, tSong->path);
+   }
+    fclose(f);
+}
+
