@@ -1,3 +1,2 @@
-﻿  main.cpp
-c:\users\jsu48\source\vs_workspace\problemsolving\musiclibrary\musiclibrary\main.cpp(11): warning C4101: 'arg2' :참조되지 않은 지역 변수입니다.
+﻿  library.cpp
   MusicLibrary.vcxproj -> C:\Users\jsu48\source\VS_workspace\ProblemSolving\MusicLibrary\Debug\MusicLibrary.exe

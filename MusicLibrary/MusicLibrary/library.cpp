@@ -1,11 +1,18 @@
 #include "library.h"
-
+#include "string_tools.h"
 int lastIndex=0;
 Artist* artist_directory[27];
 Library* index_directory[INDEX_SIZE];
-
+Artist* getArtistHead(int i) {
+    return artist_directory[i];
+}
+int* getCap() {
+    return &lastIndex;
+}
 Song* initSong(char* title, char* path, int index) {
     Song* ret = (Song*)malloc(sizeof(Song));
+    ret->title = (char*)malloc(sizeof(char)*strlen(title));
+    ret->path= (char*)malloc(sizeof(char)*strlen(path));
     strcpy(ret->title, title);
     strcpy(ret->path,path);
     ret->index = index;
@@ -22,6 +29,7 @@ Library* initLibrary(Song* song) {
 
 Artist* initArtist(char* name) {
     Artist* ret = (Artist*)malloc(sizeof(Artist));
+    ret->name = (char*)malloc(strlen(name) * sizeof(char));
     strcpy(ret->name, name);
     ret->tail = NULL;
     ret->head = NULL;
@@ -35,9 +43,7 @@ void addSong(Artist* artist, Song* song) {
     if (pointer == NULL) {
         artist->head = artistLib;
         artist->tail = artistLib;
-        return;
-    }
-    while(1)
+    }else while(1)
     if (pointer->next==NULL||strcmp(artistLib->song->title, pointer->next->song->title) > 0) {//TODO can be changed
         if (pointer->next != NULL) {
             artistLib->next = pointer->next;
@@ -47,8 +53,7 @@ void addSong(Artist* artist, Song* song) {
         artistLib->prev = pointer;
         artist->tail = artistLib;
         break;
-    }
-    else pointer = pointer->next;
+    }else pointer = pointer->next;
 
     Library* indexLib = initLibrary(song);
     pointer = index_directory[song->index%INDEX_SIZE];
@@ -132,25 +137,31 @@ void removeSongByIndex(int index) {
 }
 
 void readList(char* Fpath) {
+    if (strlen(Fpath) == 0) return;
     FILE* f;
     f =fopen(Fpath, "r");
+    if (f == NULL) {
+        return;
+    }
     char buffer[MAX_BUFFER_LENGTH];
-    while (fscanf(f, "%s", &buffer) != EOF) {
+    while (read_file_line(f,buffer,MAX_BUFFER_LENGTH) != EOF) {
         int num=atoi(strtok(buffer, "|"));
+        char* artist= strtok(NULL, "|");
+        char* title = strtok(NULL, "|");
         char* path = strtok(NULL, "|");
         char* tPath=NULL;
-        strcpy(tPath,path);
-        char* tArtist = strtok(path, "/"),*tName=strtok(NULL,"/"), *tBuffer=strtok(NULL,"/");
+        //strcpy(tPath,path);
+        /*char* tArtist = strtok(path, "/"),*tName=strtok(NULL,"/"), *tBuffer=strtok(NULL,"/");
         while (strlen(tBuffer)!=0) {
             free(tArtist);
             tArtist = tName;
             tName = tBuffer;
             tBuffer = strtok(NULL, "/");
+        }*/
+        if (findArtistByName(artist) == NULL) {
+            addArtist(initArtist(artist));
         }
-        if (findArtistByName(tArtist) == NULL) {
-            addArtist(initArtist(tArtist));
-        }
-        addSong(findArtistByName(tArtist), initSong(tName, path, lastIndex++));
+        addSong(findArtistByName(artist), initSong(title, path, lastIndex++));
     }
     fclose(f);
 }

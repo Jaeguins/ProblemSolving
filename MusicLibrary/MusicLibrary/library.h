@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+int* getCap();
 struct library;
 typedef struct artist {
     char* name;
@@ -42,3 +42,9 @@ Artist* findArtistByName(char* name);
 void readList(char* path);
 
 void writeList(char* path);
+
+Artist* getArtistHead(int i);
+
+Artist* initArtist(char* name);
+
+Song* initSong(char* title, char* path, int index);
