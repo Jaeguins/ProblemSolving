@@ -5,35 +5,40 @@
 #define BUFFER_LENGTH 100
 char buffer[BUFFER_LENGTH];
 char filePath[1000];
-
-
-void enumerateSong(Artist* input) {
-    Library* songPointer = input->head;
-    if (songPointer != NULL) {
-        Song* song = songPointer->song;
-        printf("%2d : %s, %s, %s\n", song->index, song->artist, song->title, song->path);
-    }
-    while (songPointer->next != NULL) {
-        Song* song = songPointer->song;
-        printf("%2d : %s, %s, %s\n", song->index, song->artist, song->title, song->path);
-        songPointer = songPointer->next;
-    }
-
+void printSong(Song* song) {
+    printf("%2d : %s, %s, %s\n", song->index, song->artist->name, song->title, song->path);
+}
+void printSongForDelete(Song* song) {
+    printf("%2d : %s,%s is deleted from the list.\n", song->index, song->artist->name, song->title);
 }
 
-void handle_status() {
+void enumerateSong(Artist* input, char* title) {
+    Library* songPointer = input->head;
+    if (songPointer == NULL)return;
+    else {
+        Song* song = songPointer->song;
+        if (title == NULL || strcmp(song->title, title) == 0)printSong(song);
+    }
+    while (songPointer->next != NULL) {
+        songPointer = songPointer->next;
+        Song* song = songPointer->song;
+        if (title == NULL || strcmp(song->title, title) == 0)printSong(song);
+    }
+}
+
+void print_search(char* artist, char* title) {
+    if (strlen(artist) == 0)artist = 0;
+    if (strlen(title) == 0)title = 0;
     for (int i = 0; i < 27; i++) {
         Artist* artistPointer = getArtistHead(i);
-        if (artistPointer == NULL) {
-            continue;
-        }
-        enumerateSong(artistPointer);
+        if (artistPointer == NULL) continue;
+        if (artist == NULL || strcmp(artistPointer->name, artist) == 0) enumerateSong(artistPointer, title);
         while (artistPointer->next != NULL) {
-            enumerateSong(artistPointer);
+            if (artist == NULL || strcmp(artistPointer->name, artist) == 0)
+                enumerateSong(artistPointer, title);
             artistPointer = artistPointer->next;
         }
     }
-    printf("Done.\n");
 }
 
 void handle_add() {
@@ -54,27 +59,34 @@ void handle_add() {
     }
     printf("File : ");
     read_line(tPath, BUFFER_LENGTH);
-    if (findArtistByName(tArtist) == NULL) {
-        addArtist(initArtist(tArtist));
-    }
+    if (findArtistByName(tArtist) == NULL) addArtist(initArtist(tArtist));
     addSong(findArtistByName(tArtist), initSong(tTitle, tPath, *getCap()));
     *getCap() = *getCap() + 1;
 }
 
 void handle_search() {
-
+    char tArtist[BUFFER_LENGTH];
+    char tTitle[BUFFER_LENGTH];
+    printf("Artist : ");
+    read_line(tArtist, BUFFER_LENGTH);
+    printf("Title : ");
+    read_line(tTitle, BUFFER_LENGTH);
+    printf("Found :\n");
+    print_search(tArtist, tTitle);
 }
 
 void handle_play(int index) {
-
+    playSongByIndex(index);
 }
 
 void handle_remove(int index) {
-
+    Song* tmp=removeSongByIndex(index);
+    printSongForDelete(tmp);
+    free(tmp);
 }
 
 void handle_save(char* mod, char* path) {
-    if (strcmp(mod, "as")==0) writeList(path);
+    if (strcmp(mod, "as") == 0) writeList(path);
 }
 
 void process_command() {
@@ -82,16 +94,17 @@ void process_command() {
     char copied[BUFFER_LENGTH];
     char *command, *arg1, *arg2;
     printf("which save list do you want to? : ");
-    read_line(filePath,1000);
+    read_line(filePath, 1000);
     readList(filePath);
     while (1) {
         printf("$ ");
-        if (read_line(command_line, BUFFER_LENGTH) <= 0)
-            continue;
+        if (read_line(command_line, BUFFER_LENGTH) <= 0)continue;
         strcpy(copied, command_line);
         command = strtok(command_line, " ");
         if (strcmp(command, "status") == 0) {
-            handle_status();
+            char t[1] = { '\0' };
+            print_search(t, t);
+            printf("Done.\n");
         }
         else if (strcmp(command, "play") == 0) {
             arg1 = strtok(NULL, " ");
@@ -111,20 +124,15 @@ void process_command() {
             int index = atoi(arg1);
             handle_remove(index);
         }
-
-        else if (strcmp(command, "add") == 0) {
-            handle_add();
-        }
-        else if (strcmp(command, "search") == 0) {
-            handle_search();
-        }
+        else if (strcmp(command, "add") == 0) handle_add();
+        else if (strcmp(command, "search") == 0) handle_search();
         else if (strcmp(command, "save") == 0) {
             arg1 = strtok(NULL, " ");
             if (arg1 == NULL) {
                 printf("Invalid arguments.\n");
                 continue;
             }
-            else if (strcmp(arg1, "as")==0) {
+            else if (strcmp(arg1, "as") == 0) {
                 arg2 = strtok(NULL, " ");
                 if (arg2 == NULL) {
                     printf("Invalid arguments.\n");

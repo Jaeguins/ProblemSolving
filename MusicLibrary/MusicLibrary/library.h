@@ -1,10 +1,11 @@
 #pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #define INDEX_SIZE 10
-#define MAX_BUFFER_LENGTH 100
+#define MAX_BUFFER_LENGTH 1000
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 int* getCap();
 struct library;
 typedef struct artist {
@@ -33,7 +34,7 @@ void addArtist(Artist* artist);
 
 void addSong(Artist* artist,Song* song);
 
-void removeSongByIndex(int index);
+Song* removeSongByIndex(int index);
 
 Song* findSongByIndex(int index);
 
@@ -48,3 +49,5 @@ Artist* getArtistHead(int i);
 Artist* initArtist(char* name);
 
 Song* initSong(char* title, char* path, int index);
+
+void playSongByIndex(int index);
