@@ -33,6 +33,7 @@ int main() {
         }
         printf("%d\n", sum % 1000000);
         free(field);
+        free(stack);
     }
     getchar();
 }
