@@ -2,10 +2,9 @@
 #include<stdio.h>
 #include<stdlib.h>
 #define QUEUE_SIZE 256
-#define FIELD_SIZE 16
 int stack = 1;
-int field[FIELD_SIZE][FIELD_SIZE], check[FIELD_SIZE][FIELD_SIZE];
-
+int* field, *check;
+int size = 0;
 typedef struct  queue {
     int queueX[QUEUE_SIZE], queueY[QUEUE_SIZE];
     int rear, front;
@@ -14,12 +13,12 @@ typedef struct  queue {
 Queue* queue;
 
 Queue* queueInit() {
-    Queue* ret= malloc(sizeof(Queue));
+    Queue* ret = malloc(sizeof(Queue));
     ret->rear = 0;
     ret->front = 0;
     return ret;
 }
-void push(Queue* queue,int x, int y) {
+void push(Queue* queue, int x, int y) {
     queue->queueX[queue->rear] = x;
     queue->queueY[queue->rear] = y;
     queue->rear++;
@@ -32,66 +31,61 @@ void pop(Queue* queue, int*x, int*y) {
     if (queue->front == QUEUE_SIZE)queue->front = 0;
 }
 int isEmpty(Queue* queue) {
-    if (queue->rear == queue->front)return 1;
-    else return 0;
+    return queue->rear == queue->front ? 1 : 0;
 }
 int search(int x, int y) {
-    check[x][y] = stack;
+    check[x*size + y] = stack;
     push(queue, x, y);
-    int count=0;
-    while (!isEmpty(queue)){
+    int count = 0;
+    while (!isEmpty(queue)) {
         int tX = -1, tY = -1;
         pop(queue, &tX, &tY);
         count++;
-        for (int i = -1; i < 2; i++) {
-            for (int j = -1; j < 2; j++) {
-                if (checkBound(tX + i, tY + j) && !check[tX + i][tY + j]&&field[tX+i][tY+j]) {
+        for (int i = -1; i < 2; i++)
+            for (int j = -1; j < 2; j++)
+                if (checkBound(tX + i, tY + j) && !check[(tX + i)*size + tY + j] && field[(tX + i)*size + tY + j]) {
                     push(queue, tX + i, tY + j);
-                    check[tX + i][tY + j] = stack;
+                    check[(tX + i)*size + tY + j] = stack;
                 }
-            }
-        }
     }
     stack++;
     return count;
 }
 int checkBound(int x, int y) {
-    if (x >= 0 && x < FIELD_SIZE&&y >= 0 && y < FIELD_SIZE)return 1;
-    else return 0;
+    return (x >= 0 && x < size&&y >= 0 && y < size) ? 1 : 0;
 }
 int main() {
     queue = queueInit();
     FILE* f = fopen("input9_1.txt", "r");
-    for (int i = 0; i < FIELD_SIZE; i++) {
-        for (int j = 0; j < FIELD_SIZE; j++) {
-            fscanf(f, "%d", &field[i][j]);
+
+    fscanf(f, "%d", &size);
+    field = malloc(sizeof(int)*size*size);
+    check = malloc(sizeof(int)*size*size);
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < size; j++) {
+            fscanf(f, "%d", &field[i*size + j]);
+            check[i*size + j] = 0;
         }
-    }
-    for (int i = 0; i < FIELD_SIZE; i++) {
-        for (int j = 0; j < FIELD_SIZE; j++) {
-            if (!check[i][j]&&field[i][j]) {
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < size; j++)
+            if (!check[i*size + j] && field[i*size + j])
                 printf("%d ", search(i, j));
-            }
-        }
-    }
-    
+
     //debugging print code
-    /*printf("\n");
-    for (int j = 0; j < FIELD_SIZE; j++)printf("池式式");
+    printf("\n");
+    for (int j = 0; j < size; j++)
+        printf("池式式");
     printf("早\n");
-    for (int i = 0; i < FIELD_SIZE; i++) {
-        for (int j = 0; j < FIELD_SIZE; j++) {
-            if (check[i][j]) {
-                printf("早%2d", check[i][j]);
-            }
-            else {
-                printf("早  ");
-            }
-        }
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++)
+            if (check[i*size + j]) printf("早%2d", check[i*size + j]);
+            else printf("早  ");
         printf("早\n");
-        for (int j = 0; j < FIELD_SIZE; j++)printf("池式式");
+        for (int j = 0; j < size; j++)
+            printf("池式式");
         printf("此\n");
     }
-    */
+    free(field);
+    free(check);
     getchar();
 }
