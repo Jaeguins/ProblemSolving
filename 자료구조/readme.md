@@ -4,9 +4,9 @@
 
 각 주차의 pdf 자료.
 
-2주차의 자료의 전화번호부 관련 강의슬라이드는 [여기로](prog_assign02_slide.pdf)
+2주차의 자료의 전화번호부 관련 강의슬라이드는 [여기로](Ctest/prog_assign02_slide.pdf)
 
-6주차의 자료의 강의슬라이드는 [여기로](prog_assign06_slide.pdf)
+6주차의 자료의 강의슬라이드는 [여기로](Ctest/prog_assign06_slide.pdf)
 
 그외 빠진 부분에 대해선 권오흠 교수님의 Youtube 영상들을 참고하세요.
 
