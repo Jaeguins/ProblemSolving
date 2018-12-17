@@ -19,7 +19,7 @@ char ignoreField[MAX_IGNORE_NUMBER][MAX_WORD_LENGTH];
 int main() {
     FILE *harry, *ignore;
     fopen_s(&harry, "harry.txt", "r");
-    fopen_s(&ignore, "ignore.txt", "r");
+    fopen_s(&ignore, "ignore_5_1.txt", "r");
     char buffer[MAX_WORD_LENGTH];
     while (fscanf_s(ignore, "%s ", &buffer, MAX_WORD_LENGTH) != EOF) {
         strcpy_s(ignoreField[ignoreNum++], MAX_WORD_LENGTH, _strdup(buffer));

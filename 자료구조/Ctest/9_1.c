@@ -72,7 +72,7 @@ int main() {
                 printf("%d ", search(i, j));
 
     //debugging print code
-    printf("\n");
+   /* printf("\n");
     for (int j = 0; j < size; j++)
         printf("池式式");
     printf("早\n");
@@ -84,7 +84,7 @@ int main() {
         for (int j = 0; j < size; j++)
             printf("池式式");
         printf("此\n");
-    }
+    }*/
     free(field);
     free(check);
     getchar();

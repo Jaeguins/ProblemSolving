@@ -1,6 +1,13 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: 중간 디렉터리(Debug\)에 다른 프로젝트(Ctest.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
-  9.c
-c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\9.c(1): warning C4005: '_CRT_SECURE_NO_WARNINGS': 매크로 재정의
-  c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\9.c: note: '_CRT_SECURE_NO_WARNINGS'의 이전 정의를 참조하십시오.
-c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\9.c(46): warning C4013: 'checkBound'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-  Ctest.vcxproj -> C:\Users\jsu48\source\VS_workspace\ProblemSolving\자료구조\Debug\DatStructure.exe
+  12_1.c
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\12_1.c(1): warning C4005: '_CRT_SECURE_NO_WARNINGS': 매크로 재정의
+  c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\12_1.c: note: '_CRT_SECURE_NO_WARNINGS'의 이전 정의를 참조하십시오.
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\12_1.c(6): warning C4005: 'INT_MAX': 매크로 재정의
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\limits.h(35): note: 'INT_MAX'의 이전 정의를 참조하십시오.
+  9_1.c
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\9_1.c(1): warning C4005: '_CRT_SECURE_NO_WARNINGS': 매크로 재정의
+  c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\9_1.c: note: '_CRT_SECURE_NO_WARNINGS'의 이전 정의를 참조하십시오.
+c:\users\jsu48\source\vs_workspace\problemsolving\자료구조\ctest\9_1.c(46): warning C4013: 'checkBound'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+  코드를 생성하고 있습니다...
+9_1.obj : error LNK2005: _main이(가) 12_1.obj에 이미 정의되어 있습니다.
+C:\Users\jsu48\source\VS_workspace\ProblemSolving\자료구조\Debug\DatStructure.exe : fatal error LNK1169: 여러 번 정의된 기호가 있습니다.

@@ -12,7 +12,7 @@ void readFile() {//ют╥б
     int rowInd = 0, colInd = 0, charInd = 0;
     char buffer;
     FILE*  fp;
-    fopen_s(&fp, "tabular.txt", "r");
+    fopen_s(&fp, "tabular_1_3.txt", "r");
     fscanf_s(fp, "%d", &row);
     fscanf_s(fp, "%d", &col);
     while (fscanf_s(fp, "%c", &buffer) != EOF) {
